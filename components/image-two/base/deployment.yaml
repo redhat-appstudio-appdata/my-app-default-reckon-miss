@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: image-two
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: sample-image-component
+    app.kubernetes.io/part-of: my-application
+  name: image-two
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: image-two
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: image-two
+    spec:
+      containers:
+      - image: docker.io/openshift/hello-openshift
+        imagePullPolicy: Always
+        name: container-image
+        resources: {}
+status: {}
